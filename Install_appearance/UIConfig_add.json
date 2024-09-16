@@ -1,0 +1,664 @@
+        "id": "volumio3_ui",
+          "element": "select",
+          "doc":"TRANSLATE.APPEARANCE.USER_INTERFACE_LAYOUT_DESIGN_DOC",
+          "label": "TRANSLATE.APPEARANCE.USER_INTERFACE_LAYOUT_DESIGN",
+          "value":  {
+            "value": "0",
+            "label": "TRANSLATE.APPEARANCE.USER_INTERFACE_CONTEMPORARY"
+          },
+          "options": [
+            {
+              "value":"0",
+              "label": "TRANSLATE.APPEARANCE.USER_INTERFACE_CONTEMPORARY"
+            },
+            {
+             "value": "1",
+             "label": "Contemporary mod 1"
+            },
+            {
+             "value": "2",
+             "label": "Contemporary mod 2"
+            },
+            {
+              "value":"3",
+              "label": "TRANSLATE.APPEARANCE.USER_INTERFACE_CLASSIC"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "global_ui_section",
+      "element": "section",
+      "label": "Global modification settings",
+      "description": "Some general settings to change the appearance",
+      "icon": "fa-language",
+      "onSave": {"type":"controller", "endpoint":"miscellanea/appearance", "method":"setGlobalModUI"},
+      "hidden":true,
+      "saveButton": {
+        "label": "TRANSLATE.COMMON.SAVE",
+        "data": [
+          "forecolor",
+          "bgdarkness",
+          "ftopacity",
+          "fthide",
+          "headerbackdrop"
+        ]
+      },
+      "content": [
+        {
+          "id": "forecolor",
+          "element": "select",
+          "doc":"Color for lines and borders of buttons",
+          "label": "forecolor",
+          "value":  {
+            "value": "84,198,136",
+            "label": "green"
+          },
+--InsertColorOptions--
+        },
+        {
+          "id": "bgdarkness",
+          "element": "select",
+          "doc":"Per default the background is slightly darkened for better readability of text (default: 0.6) Value: 0 -> no darkening, 1 -> full darkness",
+          "label": "Background darkness",
+          "value":  {
+            "value": "0.4",
+            "label": "0.4"
+          },
+--InsertOpacities--
+        },
+        {
+          "id": "ftopacity",
+          "element": "select",
+          "doc":"Per default the footer is black (default: 1) Value: 0 -> transparent, 1 -> black (only for landscape format)",
+          "label": "Footer opacity",
+          "value":  {
+            "value": "0.4",
+            "label": "0.4"
+          },
+--InsertOpacities--
+        },
+        {
+          "id": "fthide",
+          "element": "switch",
+          "doc": "Hide footer on view Now Play (only for landscape format)",
+          "label": "Hide footer on view Now Play",
+          "value": false
+        },
+        {
+          "id": "headerbackdrop",
+          "element": "switch",
+          "hidden":true,
+          "doc": "Disable the header backdrop blur filter have you an album selected, it resolves a performance problem with higher resolutions (only for landscape format)",
+          "label": "Disable header backdrop blur filter",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "albumart_ui_section",
+      "element": "section",
+      "label": "Albumart modification settings",
+      "description": "Some settings to change the view of albumarts on Now Play view and albumart cards on music library",
+      "icon": "fa-language",
+      "onSave": {"type":"controller", "endpoint":"miscellanea/appearance", "method":"setAlbumartModUI"},
+      "hidden":true,
+      "saveButton": {
+        "label": "TRANSLATE.COMMON.SAVE",
+        "data": [
+          "aadim",
+          "aaspace",
+          "border",
+          "bordercolor",
+          "bordercorner",
+          "aashadow"
+        ]
+      },
+      "content": [
+        {
+          "id": "aadim",
+          "element": "input",
+          "type": "number",
+          "doc": "Albumart resize in pixel: -500px ...0... 500px to resize (only for landscape)",
+          "label": "Albumart resize in pixel (-500...500)",
+          "attributes": [
+            {"placeholder": 0},
+            {"maxlength": 4},
+            {"min": -500},
+            {"max": 500}
+          ],
+          "value": 0
+        },
+        {
+          "id": "aaspace",
+          "element": "input",
+          "type": "number",
+          "doc": "Space around albumart in percent from screen hight: 0 ... 50 (only for landscape)",
+          "label": "Space around albumart in percent  (0...50)",
+          "attributes": [
+            {"placeholder": 2},
+            {"maxlength": 2},
+            {"min": 0},
+            {"max": 50}
+          ],
+          "value": 2
+        },
+        {
+          "id": "border",
+          "element": "switch",
+          "doc":"Border around albumart pictures",
+          "label": "Albumart border",
+          "value": true
+        },
+        {
+          "id": "bordercolor",
+          "element": "select",
+          "visibleIf": {
+            "field": "border",
+            "value": true
+          },
+          "doc":"Border color for albumart pictures",
+          "label": "border color",
+          "value":  {
+            "value": "255,255,255",
+            "label": "white"
+          },
+--InsertColorOptions--
+        },
+        {
+          "id": "bordercorner",
+          "element": "switch",
+          "doc":"Rounded corner for albumart pictures",
+          "label": "rounded corner",
+          "value": true
+        },		
+        {
+          "id": "aashadow",
+          "element": "switch",
+          "doc":"Shadow for albumart pictures",
+          "label": "Albumart shadow",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "title1_ui_section",
+      "element": "section",
+      "label": "Track info modification settings",
+      "description": "Some settings for Mod 1 to change the track info on Now Play view",
+      "icon": "fa-language",
+      "onSave": {"type":"controller", "endpoint":"miscellanea/appearance", "method":"setTitle1ModUI"},
+      "hidden":true,
+      "saveButton": {
+        "label": "TRANSLATE.COMMON.SAVE",
+        "data": [
+          "buttons",
+          "textwrap",
+          "tinfoY",
+          "title",
+          "title2",
+          "artist",
+          "srate",
+          "sratespace"
+        ]
+      },
+      "content": [
+        {
+          "id": "buttons",
+          "element": "input",
+          "type": "number",
+          "doc": "Enlarge play buttonsbar 0 ... 10 for screen hight > 400px",
+          "label": "Enlarge play buttonsbar for screen hight > 400px (0...10)",
+          "attributes": [
+            {"placeholder": 0},
+            {"maxlength": 2},
+            {"min": 0},
+            {"max": 10}
+          ],
+          "value": 0
+        },
+        {
+          "id": "textwrap",
+          "element": "switch",
+          "doc":"If not enough space, textwrap for title and artist/album instead show dots at the end of line.",
+          "label": "Textwrap",
+          "value": false
+        },
+        {
+          "id": "tinfoY",
+          "element": "input",
+          "type": "number",
+          "doc": "Top position of track info in percent from screen hight: 0 ... 50 (only for landscape)",
+          "label": "Track info container top position in percent (0...50)",
+          "attributes": [
+            {"placeholder": 8},
+            {"maxlength": 2},
+            {"min": 0},
+            {"max": 50}
+          ],
+          "value": 8
+        },
+        {
+          "id": "title",
+          "element": "input",
+          "type": "number",
+          "doc": "Fontsize of title info in pixel for screen hight < 600px (only for landscape)",
+          "label": "Fontsize of title info in pixel for screen hight < 600px (2...200)",
+          "attributes": [
+            {"placeholder": 16},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 16
+        },
+        {
+          "id": "title2",
+          "element": "input",
+          "type": "number",
+          "doc": "Fontsize of title info in pixel for screen hight > 600px (only for landscape)",
+          "label": "Fontsize of Title info in pixel for screen hight > 600px (2...200)",
+          "attributes": [
+            {"placeholder": 18},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 18
+        },
+        {
+          "id": "artist",
+          "element": "input",
+          "type": "number",
+          "doc": "Fontsize of artist - album in pixel(only for landscape)",
+          "label": "Fontsize of Artist - album in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 14},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 14
+        },
+        {
+          "id": "srate",
+          "element": "input",
+          "type": "number",
+          "doc": "Fontsize of sample rate in pixel (only for landscape)",
+          "label": "Fontsize of sample rate in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 14},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 14
+        },
+        {
+          "id": "sratespace",
+          "element": "input",
+          "type": "number",
+          "doc": "Space between title and sample rate in pixel (only for landscape)",
+          "label": "Space between title and sample rate in pixel (0...100)",
+          "attributes": [
+            {"placeholder": 5},
+            {"maxlength": 3},
+            {"min": 0},
+            {"max": 100}
+          ],
+          "value": 5
+        }
+      ]
+    },
+    {
+      "id": "title2_ui_section",
+      "element": "section",
+      "label": "Track info modification settings",
+      "description": "Some settings for Mod 2 to change the track info on Now Play view, different settings for higher resolutions available",
+      "icon": "fa-language",
+      "onSave": {"type":"controller", "endpoint":"miscellanea/appearance", "method":"setTitle2ModUI"},
+      "hidden":true,
+      "saveButton": {
+        "label": "TRANSLATE.COMMON.SAVE",
+        "data": [
+          "buttons",
+          "textwrap",
+          "resolution",
+          "tinfoY",
+          "title",
+          "artist",
+          "srate",
+          "sratespace",
+          "tinfoY2",
+          "title2",
+          "artist2",
+          "srate2",
+          "sratespace2",
+          "tinfoY3",
+          "title3",
+          "artist3",
+          "srate3",
+          "sratespace3"
+        ]
+      },
+      "content": [
+        {
+          "id": "buttons",
+          "element": "input",
+          "type": "number",
+          "doc": "Enlarge play buttonsbar 0 ... 10 for screen hight > 400px",
+          "label": "Enlarge play buttonsbar for screen hight > 400px (0...10)",
+          "attributes": [
+            {"placeholder": 0},
+            {"maxlength": 2},
+            {"min": 0},
+            {"max": 10}
+          ],
+          "value": 0
+        },
+        {
+          "id": "textwrap",
+          "element": "switch",
+          "doc":"If not enough space, textwrap for title and artist/album instead show dots at the end of line.",
+          "label": "Textwrap",
+          "value": false
+        },
+        {
+          "id": "resolution",
+          "element": "select",
+          "doc":"Select the resolution scope for the following track info settings. Please note any scaling factors that may have been set.",
+          "label": "Resolution scope of the following settings",
+          "value":  {
+            "value": "0",
+            "label": "width < 1200px"
+          },
+          "options": [
+            {
+              "value": "0",
+              "label": "width < 1200px"
+            },
+            {
+              "value": "1",
+              "label": "width > 1200px and < 1600px"
+            },
+            {
+              "value": "2",
+              "label": "width > 1600px"
+            }
+          ]
+        },
+        {
+          "id": "tinfoY",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "0"
+          },
+          "doc": "Top position of track info in percent from screen width < 1200px (only for landscape)",
+          "label": "Track info container top position in percent (0...50)",
+          "attributes": [
+            {"placeholder": 8},
+            {"maxlength": 2},
+            {"min": 0},
+            {"max": 50}
+          ],
+          "value": 8
+        },
+        {
+          "id": "title",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "0"
+          },
+          "doc": "Fontsize of title info in pixel for screen width < 1200px (only for landscape)",
+          "label": "Fontsize of title info in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 16},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 16
+        },
+        {
+          "id": "artist",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "0"
+          },
+          "doc": "Fontsize of artist - album in pixel for screen width < 1200px (only for landscape)",
+          "label": "Fontsize of Artist - album in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 14},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 14
+        },
+        {
+          "id": "srate",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "0"
+          },
+          "doc": "Fontsize of sample rate in pixel for screen width < 1200px (only for landscape)",
+          "label": "Fontsize of sample rate in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 14},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 14
+        },
+        {
+          "id": "sratespace",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "0"
+          },
+          "doc": "Space between title and sample rate in pixel for screen width < 1200px (only for landscape)",
+          "label": "Space between title and sample rate in pixel (0...100)",
+          "attributes": [
+            {"placeholder": 5},
+            {"maxlength": 3},
+            {"min": 0},
+            {"max": 100}
+          ],
+          "value": 5
+        },
+        {
+          "id": "tinfoY2",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "1"
+          },
+          "doc": "Top position of track info in percent from screen width > 1200px and < 1600px (only for landscape)",
+          "label": "Track info container top position in percent (0...50)",
+          "attributes": [
+            {"placeholder": 12},
+            {"maxlength": 2},
+            {"min": 0},
+            {"max": 50}
+          ],
+          "value": 12
+        },
+        {
+          "id": "title2",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "1"
+          },
+          "doc": "Fontsize of title info in pixel for screen width > 1200px and < 1600px (only for landscape)",
+          "label": "Fontsize of title info in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 20},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 20
+        },
+        {
+          "id": "artist2",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "1"
+          },
+          "doc": "Fontsize of artist - album in pixel for screen width > 1200px and < 1600px (only for landscape)",
+          "label": "Fontsize of Artist - album in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 16},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 16
+        },
+        {
+          "id": "srate2",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "1"
+          },
+          "doc": "Fontsize of sample rate in pixel for screen width > 1200px and < 1600px (only for landscape)",
+          "label": "Fontsize of sample rate in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 16},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 16
+        },
+        {
+          "id": "sratespace2",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "1"
+          },
+          "doc": "Space between title and sample rate in pixel for screen width > 1200px and < 1600px (only for landscape)",
+          "label": "Space between title and sample rate in pixel (0...100)",
+          "attributes": [
+            {"placeholder": 10},
+            {"maxlength": 3},
+            {"min": 0},
+            {"max": 100}
+          ],
+          "value": 10
+        },
+        {
+          "id": "tinfoY3",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "2"
+          },
+          "doc": "Top position of track info in percent from screen width > 1600px (only for landscape)",
+          "label": "Track info container top position in percent (0...50)",
+          "attributes": [
+            {"placeholder": 15},
+            {"maxlength": 2},
+            {"min": 0},
+            {"max": 50}
+          ],
+          "value": 15
+        },
+        {
+          "id": "title3",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "2"
+          },
+          "doc": "Fontsize of title info in pixel for screen width > 1600px (only for landscape)",
+          "label": "Fontsize of title info in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 24},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 24
+        },
+        {
+          "id": "artist3",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "2"
+          },
+          "doc": "Fontsize of artist - album in pixel for screen width > 1600px (only for landscape)",
+          "label": "Fontsize of Artist - album in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 18},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 18
+        },
+        {
+          "id": "srate3",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "2"
+          },
+          "doc": "Fontsize of sample rate in pixel for screen width > 1600px (only for landscape)",
+          "label": "Fontsize of sample rate in pixel (2...200)",
+          "attributes": [
+            {"placeholder": 24},
+            {"maxlength": 3},
+            {"min": 2},
+            {"max": 200}
+          ],
+          "value": 24
+        },
+        {
+          "id": "sratespace3",
+          "element": "input",
+          "type": "number",
+          "visibleIf": {
+            "field": "resolution",
+            "value": "2"
+          }, 
+          "doc": "Space between title and sample rate in pixel for screen width > 1600px (only for landscape)",
+          "label": "Space between title and sample rate in pixel (0...100)",
+          "attributes": [
+            {"placeholder": 15},
+            {"maxlength": 3},
+            {"min": 0},
+            {"max": 100}
+          ],
+          "value": 15
+        } 
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+installation instructions:
+
+- copy the complete Install_appearance folder to /home/volumio
+- make the install_appearance.sh and uninstall_appearance executable:
+    chmod +x /home/volumio/Install_appearance/install_appearance.sh
+    chmod +x /home/volumio/Install_appearance/uninstall_appearance.sh
+- start the installation script:
+    /home/volumio/Install_appearance/install_appearance.sh
+- the uninstall script restore all original files, so it's possible to make a system update 
+    /home/volumio/Install_appearance/uninstall_appearance.sh
+  
